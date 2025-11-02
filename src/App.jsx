@@ -2,12 +2,20 @@ import React, { useEffect, useState } from "react";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
+  const [bgImage, setBgImage] = useState("./bg-img.webp");
 
   useEffect(() => {
     setIsVisible(true);
+
+    const handleResize = () => {
+      setBgImage(window.innerWidth <= 768 ? "./mobil.webp" : "./bg-img.webp");
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Telegram tugmasi — ilova ochish + fallback
   const handleTelegramClick = () => {
     window.location.href = "tg://resolve?domain=Gilam_yuvish_Zilol";
     setTimeout(() => {
@@ -16,140 +24,181 @@ function App() {
   };
 
   const services = [
-    { icon: "🧹", name: "Gilam yuvish", description: "Professional usullarda" },
-    { icon: "💨", name: "Quritish", description: "Tez va sifatli" },
-    { icon: "🧼", name: "Ximchistka", description: "Zamonaviy uskunalar" },
-    { icon: "🚚", name: "Yetkazib berish", description: "Bepul xizmat" },
+    {
+      name: "Gilam yuvish",
+      description: "Yevropa texnologiyalarida chuqur tozalash",
+      image: "./gilam-logo.webp",
+    },
+    {
+      name: "Mebel tozalash",
+      description: "Divan, kreslo va stullar uchun maxsus xizmat",
+      image: "./mebl.jpg",
+    },
+    {
+      name: "Ko‘rpa va adyol",
+      description: "Issiq suvli gigienik yuvish va quritish",
+      image: "./ko'rpa_adyol.webp",
+    },
+    {
+      name: "Yumshoq matolar",
+      description: "Yostiq, parda va plitkalar uchun yumshoq tozalash",
+      image: "./yumshoq.jpg",
+    },
   ];
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center  from-sky-100 via-white to-blue-100 p-4"
+      className="min-h-screen flex items-center justify-center p-6 sm:p-8 bg-gradient-to-br from-yellow-100 via-white to-sky-100 relative overflow-hidden"
       style={{
-        backgroundImage: "url('./bg-img1.jpg')",
+        backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
+      {/* Fon effektlar */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_#FFD54F33,_transparent_60%)] blur-3xl"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_#4FC3F733,_transparent_60%)] blur-3xl"></div>
+
+      {/* Asosiy o‘rama */}
       <div
-        className={`backdrop-blur-xl shadow-2xl rounded-3xl p-8 md:p-12 text-center border border-white/10 max-w-md w-full transform transition-all duration-700 ${
+        className={`relative backdrop-blur-1xl border border-white/30 rounded-3xl shadow-2xl p-8 sm:p-12 md:p-14 text-center max-w-5xl w-full transition-all duration-700 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
+        style={{
+          backgroundImage: "url('/bg-gilam1.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         {/* Logo */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-8 pt-6">
           <div className="relative group">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-300 to-cyan-300 rounded-3xl opacity-70 blur-xl group-hover:opacity-100 transition-all duration-500 -z-10"></div>
+            <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 to-sky-400 rounded-3xl blur-2xl opacity-70 group-hover:opacity-100 transition-all -z-10"></div>
             <img
               src="./logo.jpg"
-              alt="Zilol gilam yuvish logotipi"
-              className="w-40 h-40 rounded-3xl shadow-2xl object-cover border-4 border-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-3xl"
+              alt="Zilol logotipi"
+              loading="lazy"
+              className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-3xl border-4 border-white shadow-xl object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
             />
           </div>
         </div>
 
         {/* Title */}
-        <div className="mb-10 space-y-4">
-          <h1 className="text-5xl font-black text-gray-800 tracking-tight bg-gradient-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent animate-pulse-slow">
-            ZILOL
-          </h1>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full shadow-lg"></div>
-          <p className="text-xl text-gray-700 font-semibold">
-            Gilam yuvish xizmati
-          </p>
-          <p className="text-sm text-gray-500 max-w-xs mx-auto leading-relaxed">
-            Sifatli, tez va ishonchli gilam tozalash xizmati
-          </p>
-        </div>
+        <h1 className="text-5xl font-extrabold bg-gradient-to-r from-blue-700 via-sky-500 to-yellow-500 bg-clip-text text-transparent animate-glow mb-3">
+          ZILOL
+        </h1>
+        <p className="text-black font-semibold mb-8 text-lg">
+          Gilam yuvish korxonasi
+        </p>
 
-        {/* Services */}
-        <div className="grid grid-cols-2 gap-3 mb-8">
+        {/* Hizmatlar */}
+        <div className="grid md:grid-cols-2 gap-6 mb-10">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-4 border border-blue-100/50 hover:border-blue-200 transition-all duration-300 hover:shadow-lg group"
+              className="relative group overflow-hidden rounded-3xl border border-white/40 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 bg-gradient-to-br from-white to-yellow-50"
             >
-              <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
+              <img
+                src={service.image}
+                loading="lazy"
+                alt={service.name}
+                className="w-full h-48 sm:h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-5 text-left">
+                <h3 className="text-xl font-bold text-white drop-shadow-lg">
+                  {service.name}
+                </h3>
+                <p className="text-sm text-gray-100 drop-shadow-md">
+                  {service.description}
+                </p>
               </div>
-              <h3 className="font-semibold text-gray-800 text-sm">
-                {service.name}
-              </h3>
-              <p className="text-xs text-gray-600 mt-1">
-                {service.description}
-              </p>
             </div>
           ))}
         </div>
 
-        {/* Contact Buttons */}
-        <div className="flex flex-col space-y-4 mb-8">
-          {/* Telegram Button */}
+        {/* Tugmalar */}
+        <div className="flex flex-col md:flex-row gap-4 justify-center mb-10">
           <button
             onClick={handleTelegramClick}
-            className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
+            aria-label="Telegram orqali bog‘lanish"
+            className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-500 text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-sky-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <div className="relative flex items-center justify-center gap-3">
-              <i className="fab fa-telegram-plane text-lg"></i>
-              <span>Telegram</span>
-              <i className="fas fa-external-link-alt text-xs opacity-70"></i>
+              <img
+                src="./telegram_logo.svg.png"
+                alt="Telegram logotipi"
+                loading="lazy"
+                className="w-7 h-7"
+              />
+              <span>Telegram orqali bog‘lanish</span>
             </div>
           </button>
 
-          {/* Websayt */}
           <a
             href="#"
-            className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-green-500 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
+            aria-label="Websaytga o‘tish"
+            className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-500 text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative flex items-center justify-center gap-3">
-              <i className="fas fa-desktop text-lg"></i>
-              <span>Websayt</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative flex items-center justify-center gap-4">
+              <img
+                src="./www3.svg"
+                alt="Web icon"
+                loading="lazy"
+                className="w-7 h-7"
+              />
+              <span>Websaytga o‘tish</span>
             </div>
           </a>
 
-          {/* Telefon */}
           <a
             href="tel:+998732001313"
-            className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-gray-800 to-gray-900 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
+            aria-label="Operator bilan bog‘lanish"
+            className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-gray-800 to-blue-900 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative flex items-center justify-center gap-3">
-              <i className="fas fa-phone-alt text-lg"></i>
-              <span>+998 73 200-13-13</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative flex items-center justify-center gap-4">
+              <img
+                src="./col.png"
+                alt="Telefon belgisi"
+                loading="lazy"
+                className="w-8 h-8"
+              />
+              <div className="flex flex-col text-left">
+                <p>Operator bilan bog‘laning</p>
+              </div>
             </div>
           </a>
         </div>
 
         {/* Footer */}
-        <div className="text-center space-y-2">
-          <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
-            <div className="flex items-center gap-1">
-              <i className="fas fa-map-marker-alt text-red-500"></i>
-              <span>Fergana</span>
-            </div>
-          </div>
-          <p className="text-xs text-gray-400 pt-2 border-t border-gray-200/50">
-            © 2025 ZILOL Gilam Yuvish. Barcha huquqlar himoyalangan.
+        <footer className="text-center text-black text-sm border-t border-gray-300/40 pt-4 pb-8">
+          <p className="text-xl font-semibold">
+            📍 Farg‘ona SHahar — ZILOL gilam yuvish korxonasi
           </p>
-        </div>
+          <p className="text-xs mt-1">
+            © 2025 ZILOL Clean Service. Barcha huquqlar himoyalangan.
+          </p>
+        </footer>
       </div>
 
-      {/* Custom Animation */}
+      {/* Glow effekt */}
       <style jsx>{`
-        @keyframes pulse-slow {
+        @keyframes glow {
           0%,
           100% {
-            opacity: 1;
+            text-shadow: 0 0 20px #ffd54f88, 0 0 30px #4fc3f777;
           }
           50% {
-            opacity: 0.9;
+            text-shadow: 0 0 30px #ffeb3b, 0 0 40px #03a9f4;
           }
         }
-        .animate-pulse-slow {
-          animation: pulse-slow 3s infinite;
+        .animate-glow {
+          animation: glow 3s infinite ease-in-out;
         }
       `}</style>
     </div>
