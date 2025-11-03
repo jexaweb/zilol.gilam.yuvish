@@ -26,11 +26,11 @@ function App() {
   const services = [
     {
       name: "Gilam yuvish",
-      description: "Yevropa texnologiyalarida chuqur tozalash",
+      description: "Professional gilam yuvish hizmati",
       image: "./gilam-logo.webp",
     },
     {
-      name: "Mebel tozalash",
+      name: "Mebel yuvish",
       description: "Divan, kreslo va stullar uchun maxsus xizmat",
       image: "./mebl.jpg",
     },
@@ -41,8 +41,8 @@ function App() {
     },
     {
       name: "Yumshoq matolar",
-      description: "Yostiq, parda va plitkalar uchun yumshoq tozalash",
-      image: "./yumshoq.jpg",
+      description: "Yostiq, parda va yumshoq o'yinchoqlar yuvish",
+      image: "./yumshoq.png",
     },
   ];
 
@@ -65,12 +65,12 @@ function App() {
         className={`relative backdrop-blur-1xl border border-white/30 rounded-3xl shadow-2xl p-8 sm:p-12 md:p-14 text-center max-w-5xl w-full transition-all duration-700 ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
-        style={{
-          backgroundImage: "url('/bg-gilam1.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+        // style={{
+        //   backgroundImage: "url('/bg-gilam1.png')",
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "no-repeat",
+        // }}
       >
         {/* Logo */}
         <div className="flex justify-center mb-8 pt-6">
@@ -111,7 +111,7 @@ function App() {
                 <h3 className="text-xl font-bold text-white drop-shadow-lg">
                   {service.name}
                 </h3>
-                <p className="text-sm text-gray-100 drop-shadow-md">
+                <p className="text-mi  text-amber-200 drop-shadow-md">
                   {service.description}
                 </p>
               </div>
@@ -176,14 +176,14 @@ function App() {
         </div>
 
         {/* Footer */}
-        <footer className="text-center text-black text-sm border-t border-gray-300/40 pt-4 pb-8">
+        <footer className="text-center text-black text-sm border-t border-gray-300/40 pt-20 pb-10">
           <p className="text-xl font-semibold">
-            📍 Farg‘ona SHahar — ZILOL gilam yuvish korxonasi
-          </p>
-          <p className="text-xs mt-1">
-            © 2025 ZILOL Clean Service. Barcha huquqlar himoyalangan.
+            📍 Farg‘ona Shahar — ZILOL gilam yuvish korxonasi
           </p>
         </footer>
+        <p className="text-xs mt-1">
+          © 2025 ZILOL Call Center. Barcha huquqlar lisenzalangan.
+        </p>
       </div>
 
       {/* Glow effekt */}
