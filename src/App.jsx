@@ -73,25 +73,25 @@ function App() {
         // }}
       >
         {/* Logo */}
-        <div className="flex justify-center mb-8 pt-6">
+        <div className="flex justify-center mb-4 pt-6">
           <div className="relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 to-sky-400 rounded-3xl blur-2xl opacity-70 group-hover:opacity-100 transition-all -z-10"></div>
             <img
               src="./logo.jpg"
               alt="Zilol logotipi"
               loading="lazy"
-              className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-3xl border-4 border-white shadow-xl object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+              className="w-50 h-50 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-3xl border-4 border-white shadow-xl object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
             />
           </div>
         </div>
 
         {/* Title */}
-        <h1 className="text-5xl font-extrabold bg-gradient-to-r from-blue-700 via-sky-500 to-yellow-500 bg-clip-text text-transparent animate-glow mb-3">
-          ZILOL
-        </h1>
-        <p className="text-black font-semibold mb-8 text-lg">
-          Gilam yuvish korxonasi
-        </p>
+
+        <div className="">
+          <p className="   text-2xl font-bold bg-gradient-to-r from-purple-600 to-green-400 bg-clip-text text-transparent mb-10">
+            Gilam yuvish korxonasi
+          </p>
+        </div>
 
         {/* Hizmatlar */}
         <div className="grid md:grid-cols-2 gap-6 mb-10">
@@ -111,7 +111,7 @@ function App() {
                 <h3 className="text-xl font-bold text-white drop-shadow-lg">
                   {service.name}
                 </h3>
-                <p className="text-mi  text-amber-200 drop-shadow-md">
+                <p className="text-mi font-bold bg-gradient-to-r from-amber-300 to-amber-100 bg-clip-text text-transparent drop-shadow-md">
                   {service.description}
                 </p>
               </div>
