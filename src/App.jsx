@@ -26,7 +26,7 @@ function App() {
   const services = [
     {
       name: "Gilam yuvish",
-      description: "Professional gilam yuvish hizmati",
+      description: "Professional gilam yuvish Korhonasi",
       image: "./gilam-logo.webp",
     },
     {
@@ -111,7 +111,7 @@ function App() {
                 <h3 className="text-xl font-bold text-white drop-shadow-lg">
                   {service.name}
                 </h3>
-                <p className="text-mi font-bold bg-gradient-to-r from-amber-300 to-amber-100 bg-clip-text text-transparent drop-shadow-md">
+                <p className="text-mi font-bold text-white ">
                   {service.description}
                 </p>
               </div>
@@ -119,6 +119,13 @@ function App() {
           ))}
         </div>
 
+        <div
+          className="rounded-1xl mb-10 relative overflow-hidden 
+             bg-no-repeat bg-center 
+             sm:bg-cover md:bg-contain"
+        >
+          <img src="/siz_uchun.png" alt="bg-log" />
+        </div>
         {/* Tugmalar */}
         <div className="flex flex-col md:flex-row gap-4 justify-center mb-10">
           <button
